@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Speedometer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98775a3c062c2663f4def029a2a241caf6032676")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf7a70c9c5cf573d9b42a640d1a8151d67fc5842")]
 [assembly: System.Reflection.AssemblyProductAttribute("Speedometer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Speedometer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

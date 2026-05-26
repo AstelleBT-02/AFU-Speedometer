@@ -20,6 +20,7 @@ namespace Speedometer
         static FPVector3 lastPos;
         static int true_speed_upper;
         static int true_speed_lower;
+        static bool on_bike;
         [HarmonyPatch(typeof(FrameContext), "OnFrameSimulationBegin")]
         private partial class Simulate
         {
@@ -31,7 +32,8 @@ namespace Speedometer
                 
                 foreach (EntityRef eref in all_Erefs)
                 {
-                    if (f.Has<HoverBike>(eref)) {
+                    if (f.Has<HoverBike>(eref)) 
+                {
                     // get position
                     Transform3D hb_phys = f.Get<Transform3D>(eref);
                     FPVector3 currPos = hb_phys.Position;
@@ -48,12 +50,24 @@ namespace Speedometer
                     true_speed_lower = speed_i % 10;
                     //Log.Msg(speed_i);
                     lastPos = currPos;
-                } }
+                } 
+                    if (f.Has<Player>(eref))
+                {
+                    Player player = f.Get<Player>(eref);
+                    if (f.Context.IsLocalPlayer(player.playerRef)) {
+                    if (f.Exists(player.controlledEntity))
+                    {
+                        Humanoid human = f.Get<Humanoid>(player.controlledEntity);
+                        on_bike = f.Exists(human.vehicle);
+                    }
+                    
+                } } }
             }
         }
 
         public override void OnGUI()
         {
+            if (on_bike) {
             base.OnGUI();
             Resolution res = Screen.currentResolution;
                 
@@ -104,6 +118,6 @@ namespace Speedometer
                 }
             );
 
-        }
+        } }
     }
 }
